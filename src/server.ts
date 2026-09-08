@@ -54,6 +54,15 @@ function buildServer() {
   return server;
 }
 
+app.get("/", (_req, res) => res.json({
+  ok: true,
+  service: "fingercheck-claude-mcp",
+  version: "0.2.0",
+  accounts: 2,
+  health: "/health",
+  mcp: "/mcp"
+}));
+
 app.get("/health", (_req, res) => res.json({ ok: true, service: "fingercheck-claude-mcp", version: "0.2.0", accounts: 2 }));
 
 app.all("/mcp", async (req, res) => {
